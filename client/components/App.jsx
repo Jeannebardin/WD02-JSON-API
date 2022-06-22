@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react'
 
-import { getWelcome } from '../apiClient'
-import {getWellyWeather} from '../api/weatherApi'
+import {getMaoriProverb} from '../api/proverbApi'
 
 function App() {
-  const [welcomeStatement, setWelcomeStatement] = useState('')
-  const [wellyWeather, setWellyWeather] = useState(null)
+  const [MaoriProverb, setMaoriProverb] = useState(null)
 
   useEffect(() => {
-    getWelcome()
+    getMaoriProverb()
       .then((res) => {
-        setWelcomeStatement(res.statement)
+        setMaoriProverb(res.statement)
       })
       .catch((err) => {
         console.error(err.message)
       })
   })
 
-  const handleWellyWeatherClick = () => {
-    getWellyWeather()
-    .then(obj => setWellyWeather(obj))
+  const handleMaoriProverbClick = () => {
+    getMaoriProverb()
+    .then(obj => setMaoriProverb(obj))
   }
 
   return (
   <div> 
     <h1>{welcomeStatement}</h1>
-    <button onClick={handleWellyWeatherClick}>Get Wellington Weather!!</button>
-    {wellyWeather && <p>Welly Temp: {wellyWeather.temperature} Celcius</p>}
-    {wellyWeather && <p> Wind Speed: {wellyWeather.windspeed} km/h</p>}
+    <button onClick={handleMaoriProverbClick}>Get a proverb in Maori!</button>
+    {MaoriProverb && <p>Source: {MaoriProverb.source} More text here</p>}
+    {MaoriProverb && <p>Translation: {MaoriProverb.translation} More text here</p>}
 
   </div>
   
@@ -36,3 +34,5 @@ function App() {
 }
 
 export default App
+
+
