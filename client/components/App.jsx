@@ -13,19 +13,21 @@ function App() {
       .catch((err) => {
         console.error(err.message)
       })
-  })
+  },
+  [])
 
   const handleMaoriProverbClick = () => {
     getMaoriProverb()
     .then(obj => setMaoriProverb(obj))
+    .catch(error => console.log(error))
   }
 
   return (
   <div> 
-    <h1>{welcomeStatement}</h1>
+    <h1>This is Jeanne's first API</h1>
     <button onClick={handleMaoriProverbClick}>Get a proverb in Maori!</button>
-    {MaoriProverb && <p>Source: {MaoriProverb.source} More text here</p>}
-    {MaoriProverb && <p>Translation: {MaoriProverb.translation} More text here</p>}
+    {MaoriProverb && <p>Source: {MaoriProverb.source} This is the original Maori</p>}
+    {MaoriProverb && <p>Translation: {MaoriProverb.translation} </p>}
 
   </div>
   
